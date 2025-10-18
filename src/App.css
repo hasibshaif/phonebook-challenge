@@ -2,6 +2,9 @@
     max-width: 1100px;
     margin: 0 auto;
     padding: 2rem 1rem 4rem;
+    background: rgba(15, 15, 16, 0.4);
+    backdrop-filter: blur(10px);
+    min-height: 100vh;
 }
 
 .page__header {
@@ -14,11 +17,19 @@
 .page__title {
     margin: 0;
     font-size: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.page__title-icon {
+    height: 2rem;
+    width: auto;
 }
 
 .page__subtitle {
     margin: 0;
-    color: #888;
+    color: #0a0a0a;
 }
 
 .toolbar {
@@ -29,6 +40,9 @@
 }
 
 .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 8px;
     border: 1px solid #3a3a3a;
     padding: 0.5rem 0.9rem;
@@ -47,18 +61,22 @@
 .search {
     margin-top: 1rem;
     padding-top: 1rem;
-    border-top: 1px solid #333;
+    border-top: 1px solid #000000;
 }
 
 .search__controls {
-    display: grid;
-    grid-template-columns: minmax(140px, 1fr) 1fr minmax(120px, 1fr) 1fr;
+    display: flex;
+    flex-direction: row;
     gap: 0.5rem 1rem;
-    align-items: center;
+    align-items: left;
+}
+
+.search__controls input {
+    flex: 1;
 }
 
 .search__results {
-    color: #888;
+    color: #000000;
 }
 
 .contacts {
@@ -79,6 +97,20 @@
     border-radius: 12px;
     padding: 1rem;
     background: #111;
+    text-align: center;
+}
+
+.contact-card__avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 0.75rem;
+    border-radius: 50%;
+    background: #1a1a1a;
+    border: 1px solid #3a3a3a;
+    color: #888;
 }
 
 .contact-card__name {
@@ -99,10 +131,10 @@
 }
 
 .form__body {
-    display: grid;
+    display: flex;
     gap: 0.75rem 1rem;
-    grid-template-columns: 1fr 1fr 160px auto;
     align-items: end;
+    justify-content: start;
 }
 
 .field {
@@ -121,7 +153,11 @@ select {
 
 .form__actions {
     display: flex;
-    gap: 0.5rem;
+}
+
+.form__actions .btn {
+    height: 100%;
+    min-height: 40px;
 }
 
 .page__footer {

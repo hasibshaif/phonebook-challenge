@@ -44,6 +44,11 @@ body {
         "Segoe UI Emoji";
     color: var(--fg);
     background: var(--bg);
+    background-image: url('/images/background-image.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
 }
 
 a {

@@ -1,20 +1,32 @@
 :root {
-  /* Light theme colors */
-  --bg: #0f0f10;
-  --fg: #e7e7e9;
-  --muted: #9aa0a6;
-  --border: #2b2b2e;
-  --accent: #7c8cff;
+  --bg-primary: #ffd700;
+  --bg-secondary: #fff8dc;
+  --bg-card: #ffffff;
+  --fg-primary: #2c3e50;
+  --fg-secondary: #34495e;
+  --muted: #7f8c8d;
+  --border: #bdc3c7;
+  --accent: #e74c3c;
+  --accent-light: #ff6b6b;
+  --success: #27ae60;
+  --warning: #f39c12;
+  --shadow: rgba(0, 0, 0, 0.1);
 }
 
-@media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: dark) {
   :root {
-    /* Dark theme colors for media query */
-    --bg: #ffffff;
-    --fg: #1d1d1f;
-    --muted: #6e6e73;
-    --border: #e5e5ea;
-    --accent: #3c5cff;
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2c2c2c;
+    --bg-card: #333333;
+    --fg-primary: #ffffff;
+    --fg-secondary: #e0e0e0;
+    --muted: #999999;
+    --border: #555555;
+    --accent: #ff6b6b;
+    --accent-light: #ff8e8e;
+    --success: #2ecc71;
+    --warning: #f1c40f;
+    --shadow: rgba(0, 0, 0, 0.3);
   }
 }
 
@@ -22,42 +34,45 @@
     box-sizing: border-box;
 }
 
-html,
-body,
-#root {
+html, body, #root {
     height: 100%;
 }
 
 body {
     margin: 0;
-    font-family:
-        system-ui,
-        -apple-system,
-        Segoe UI,
-        Roboto,
-        Ubuntu,
-        Cantarell,
-        Noto Sans,
-        Helvetica,
-        Arial,
-        "Apple Color Emoji",
-        "Segoe UI Emoji";
-    color: var(--fg);
-    background: var(--bg);
+    font-family: 'Comic Sans MS', system-ui, sans-serif;
+    color: var(--fg-primary);
+    background: var(--bg-primary);
     background-image: url('/images/background-image.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
+    line-height: 1.5;
 }
 
 a {
     color: var(--accent);
 }
 
-button,
-input,
-select {
+button, input, select {
     font: inherit;
     color: inherit;
+}
+
+button:focus, input:focus, select:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+}
+
+button, input, select, .contact-card {
+    transition: all 0.2s ease;
+}
+
+button:hover {
+    transform: translateY(-1px);
+}
+
+.contact-card:hover {
+    transform: translateY(-2px);
 }

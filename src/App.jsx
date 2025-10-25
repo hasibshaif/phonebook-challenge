@@ -81,18 +81,21 @@ const App = () => {
     }
 
     return (
-        <main className="page" data-testid="page-root">
+        <main className="page" data-testid="page-root" role="main">
+            {/* Page header with title and animated donut icon */}
             <header className="page__header">
                 <h1 className="page__title">
-                    <img src="/images/donut.png" alt="Donut icon" className="page__title-icon" />
+                    <div className="page__title-icon" aria-label="Animated donut icon"></div>
                     Phonebook Challenge
                 </h1>
                 <p className="page__subtitle">Simple contact directory</p>
             </header>
 
+            {/* Search section for filtering contacts */}
             <section className="search" aria-labelledby="search-heading">
                 <h2 id="search-heading">Search Contacts</h2>
                 <div className="search__controls">
+                    <label htmlFor="search-input" className="sr-only">Search contacts</label>
                     <input
                         id="search-input"
                         type="search"
@@ -100,8 +103,12 @@ const App = () => {
                         value={query}
                         onChange={(e) => setQuery(e.target.value)}
                         data-testid="search-input"
+                        aria-describedby="search-results"
                     />
-                    <button className="btn" type="submit" aria-label="Search Contacts"><Search size={16} aria-hidden="true" /></button>
+                    <button className="btn" type="button" aria-label="Search Contacts">
+                        <Search size={16} aria-hidden="true" />
+                        <span className="sr-only">Search</span>
+                    </button>
                 </div>
 
                 <p className="search__results" data-testid="results-count">
@@ -112,9 +119,10 @@ const App = () => {
                 </p>
             </section>
 
+            {/* Contacts display section */}
             <section className="contacts" aria-labelledby="contacts-heading">
-                <h2 id="contacts-heading">Contacts</h2>
-                <ul className="contacts__grid">
+                <h2 id="contacts-heading">Contact Directory</h2>
+                <ul className="contacts__grid" role="list">
                     {contacts.map((contact) => (
                         <li key={contact.id} className="contact-card">
                             <div className="contact-card__avatar">
@@ -128,6 +136,7 @@ const App = () => {
                 </ul>
             </section>
 
+            {/* Form section for adding new contacts */}
             <section className="form" aria-labelledby="form-heading">
                 <h2 id="form-heading">Add Contact</h2>
                 <form className="form__body" onSubmit={handleSubmit} noValidate>
@@ -136,11 +145,13 @@ const App = () => {
                         <input
                             id="name"
                             name="name"
-                            placeholder="Hasib Shaif"
+                            placeholder="Homer Simpson"
                             value={form.name}
                             onChange={(e) => setForm({ ...form, name: e.target.value })}
                             required
                             minLength={2}
+                            maxLength={50}
+                            aria-describedby="name-help"
                         />
                     </div>
                     <div className="field">
@@ -148,13 +159,18 @@ const App = () => {
                         <input
                             id="phone"
                             name="phone"
-                            inputMode="tel"
-                            placeholder="(123) 456-7890"
+                            type="tel"
+                            inputMode="numeric"
+                            placeholder="1234567890"
                             value={form.phone}
-                            onChange={(e) =>
-                                setForm({ ...form, phone: e.target.value })
-                            }
+                            onChange={(e) => {
+                                const value = e.target.value.replace(/\D/g, '');
+                                setForm({ ...form, phone: value });
+                            }}
                             required
+                            pattern="[0-9]+"
+                            maxLength="10"
+                            aria-describedby="phone-help"
                         />
                     </div>
                     <div className="field">
@@ -163,16 +179,18 @@ const App = () => {
                             id="email"
                             name="email"
                             type="email"
-                            placeholder="hasib.shaif@example.com"
+                            placeholder="homer@example.com"
                             value={form.email}
                             onChange={(e) =>
                                 setForm({ ...form, email: e.target.value })
                             }
+                            aria-describedby="email-help"
                         />
                     </div>
                     <div className="form__actions">
-                        <button className="btn" type="submit" data-testid="btn-add">
+                        <button className="btn" type="submit" data-testid="btn-add" aria-label="Add new contact to directory">
                             <Plus size={16} aria-hidden="true" />
+                            <span className="sr-only">Add Contact</span>
                         </button>
                     </div>
                 </form>

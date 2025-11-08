@@ -91,6 +91,107 @@ function formatPhoneNumber(value) {
     return "(" + area + ") " + middle + "-" + last;
 }
 
+function highlight(text, query) {
+    const search = query.trim();
+
+    if (!search) {
+        return text;
+    }
+
+    const lowerText = text.toLowerCase();
+    const lowerQuery = search.toLowerCase();
+    const index = lowerText.indexOf(lowerQuery);
+
+    if (index === -1) {
+        return text;
+    }
+
+    const before = text.slice(0, index);
+    const match = text.slice(index, index + search.length);
+    const after = text.slice(index + search.length);
+
+    return (
+        <>
+            {before}
+            <mark className="highlight">{match}</mark>
+            {after}
+        </>
+    );
+}
+
+function highlightName(name, query) {
+    return highlight(name, query);
+}
+
+function highlightPhone(phone, query) {
+    const formatted = formatPhoneNumber(phone);
+    const direct = highlight(formatted, query);
+
+    if (typeof direct !== "string") {
+        return direct;
+    }
+
+    const digitsQuery = query.replace(/\D/g, "");
+
+    if (!digitsQuery) {
+        return formatted;
+    }
+
+    const matchIndex = phone.indexOf(digitsQuery);
+
+    if (matchIndex === -1) {
+        return formatted;
+    }
+
+    let before = "";
+    let highlighted = "";
+    let after = "";
+    let section = "before";
+    let digitCount = 0;
+    let highlightDigits = 0;
+
+    for (let i = 0; i < formatted.length; i += 1) {
+        const char = formatted[i];
+        const isDigit = char >= "0" && char <= "9";
+
+        if (section === "before" && isDigit && digitCount === matchIndex) {
+            section = "highlight";
+        }
+
+        if (section === "before") {
+            before += char;
+        } else if (section === "highlight") {
+            highlighted += char;
+        } else {
+            after += char;
+        }
+
+        if (isDigit) {
+            if (section === "highlight") {
+                highlightDigits += 1;
+
+                if (highlightDigits === digitsQuery.length) {
+                    section = "after";
+                }
+            }
+
+            digitCount += 1;
+        }
+    }
+
+    if (!highlighted) {
+        return formatted;
+    }
+
+    return (
+        <>
+            {before}
+            <mark className="highlight">{highlighted}</mark>
+            {after}
+        </>
+    );
+}
+
 const App = () => {
     const [contacts, setContacts] = useState(FALLBACK_CONTACTS);
     const [loading, setLoading] = useState(false);
@@ -211,6 +312,8 @@ const App = () => {
 
     const totalPages = Math.max(filteredContacts.length, 1);
     const currentContact = filteredContacts[currentPage - 1] || null;
+    const highlightedName = currentContact ? highlightName(currentContact.name, query) : null;
+    const highlightedPhone = currentContact ? highlightPhone(currentContact.phone, query) : null;
 
     return (
         <main className="page" data-testid="page-root" role="main">
@@ -279,9 +382,9 @@ const App = () => {
                                             </span>
                                         )}
                                     </div>
-                                    <h3 className="contact-card__name">{currentContact.name}</h3>
+                                    <h3 className="contact-card__name">{highlightedName}</h3>
                                     <p className="contact-card__phone">
-                                        {formatPhoneNumber(currentContact.phone)}
+                                        {highlightedPhone}
                                     </p>
                                     <p className="contact-card__email">{currentContact.email}</p>
                                 </li>

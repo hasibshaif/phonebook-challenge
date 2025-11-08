@@ -107,10 +107,13 @@
     gap: 10px;
     align-items: center;
     margin-bottom: 15px;
+    flex-wrap: wrap;
 }
 
 .search__controls input {
     flex: 1;
+    min-width: 0;
+    width: 100%;
     padding: 12px 15px;
     border: 2px solid var(--border);
     border-radius: 8px;
@@ -297,7 +300,8 @@
     letter-spacing: 0.5px;
 }
 
-input, select {
+input,
+select {
     border-radius: 8px;
     border: 2px solid var(--border);
     padding: 12px 15px;
@@ -305,6 +309,8 @@ input, select {
     color: var(--fg-primary);
     font-size: 14px;
     transition: all 0.2s ease;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 input:focus, select:focus {
@@ -351,6 +357,11 @@ input:focus, select:focus {
     .search__controls {
         flex-direction: column;
         gap: 10px;
+        align-items: stretch;
+    }
+
+    .search__controls .btn {
+        width: 100%;
     }
     
     .contacts__grid {
@@ -387,8 +398,14 @@ input:focus, select:focus {
         font-size: 14px;
     }
     
-    .search, .contacts, .form {
+    .search,
+    .contacts,
+    .form {
         padding: 15px;
+    }
+
+    .form__body {
+        width: 100%;
     }
 }
 

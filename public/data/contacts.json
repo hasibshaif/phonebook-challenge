@@ -1,32 +1,72 @@
 [
     {
-        "id": 101,
-        "name": "Ada Lovelace",
-        "phone": "(555) 010-0101",
-        "email": "ada@example.com"
+        "id": 1,
+        "name": "Homer Simpson",
+        "phone": "1111111111",
+        "email": "homer@example.com",
+        "image": "/images/homer-simpson.jpeg"
     },
     {
-        "id": 102,
-        "name": "Alan Turing",
-        "phone": "(555) 010-0102",
-        "email": "alan@example.com"
+        "id": 2,
+        "name": "Marge Simpson",
+        "phone": "2222222222",
+        "email": "marge@example.com",
+        "image": "/images/marge-simpson.jpeg"
     },
     {
-        "id": 103,
-        "name": "Grace Hopper",
-        "phone": "(555) 010-0103",
-        "email": "grace@example.com"
+        "id": 3,
+        "name": "Bart Simpson",
+        "phone": "3333333333",
+        "email": "bart@example.com",
+        "image": "/images/bart-simpson.jpeg"
     },
     {
-        "id": 104,
-        "name": "Katherine Johnson",
-        "phone": "(555) 010-0104",
-        "email": "katherine@example.com"
+        "id": 4,
+        "name": "Lisa Simpson",
+        "phone": "4444444444",
+        "email": "lisa@example.com",
+        "image": "/images/lisa-simpson.jpeg"
     },
     {
-        "id": 105,
-        "name": "Donald Knuth",
-        "phone": "(555) 010-0105",
-        "email": "donald@example.com"
+        "id": 5,
+        "name": "Maggie Simpson",
+        "phone": "5555555555",
+        "email": "maggie@example.com",
+        "image": "/images/maggie-simpson.jpeg"
+    },
+    {
+        "id": 6,
+        "name": "Ned Flanders",
+        "phone": "6666666666",
+        "email": "ned@example.com",
+        "image": "/images/ned-flanders.jpeg"
+    },
+    {
+        "id": 7,
+        "name": "Moe Szyslak",
+        "phone": "7777777777",
+        "email": "moe@example.com",
+        "image": "/images/moe-szyslak.jpeg"
+    },
+    {
+        "id": 8,
+        "name": "Apu Nahasapeemapetilon",
+        "phone": "8888888888",
+        "email": "apu@example.com",
+        "image": "/images/apu-nahasapeemapetilon.jpeg"
+    },
+    {
+        "id": 9,
+        "name": "Krusty Clown",
+        "phone": "9999999999",
+        "email": "krusty@example.com",
+        "image": "/images/krusty-clown.jpeg"
+    },
+    {
+        "id": 10,
+        "name": "Chief Wiggum",
+        "phone": "0000000000",
+        "email": "chief@example.com",
+        "image": "/images/chief-wiggum.jpeg"
     }
 ]
